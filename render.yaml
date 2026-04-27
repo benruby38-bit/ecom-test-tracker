@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ecom-test-tracker
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install --prefix server && npm install --prefix client && npm run build --prefix client
+    startCommand: node server/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: TURSO_URL
+        sync: false
+      - key: TURSO_TOKEN
+        sync: false
