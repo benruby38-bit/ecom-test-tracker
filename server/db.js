@@ -1,12 +1,12 @@
-const { createClient } = require('@libsql/client');
-require('dotenv').config();
+import { createClient } from '@libsql/client';
+import 'dotenv/config';
 
-const client = createClient({
+export const client = createClient({
   url: process.env.TURSO_URL,
   authToken: process.env.TURSO_TOKEN,
 });
 
-async function initDb() {
+export async function initDb() {
   await client.execute(`
     CREATE TABLE IF NOT EXISTS products (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -38,5 +38,3 @@ async function initDb() {
     )
   `);
 }
-
-module.exports = { client, initDb };
