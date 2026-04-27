@@ -3,7 +3,7 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import 'dotenv/config';
-import { client, initDb } from './db.js';
+import { client, createTables } from './db.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -196,7 +196,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
 
-initDb()
+createTables()
   .then(() => {
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   })
